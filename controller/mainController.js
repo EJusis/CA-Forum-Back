@@ -84,7 +84,8 @@ module.exports = {
     },
     getSingleProduct: async (req, res) => {
         const {id} = req.params
-        const findUser = await productSchema.findOne({id})
+        const findUser = await productSchema.findOne({_id: id})
+        console.log(findUser)
         try{
             res.send(findUser)
         }
