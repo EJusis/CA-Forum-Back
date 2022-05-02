@@ -17,6 +17,10 @@ const userSchema = new Schema({
     "stayLogged": {
         type: Boolean,
         required:false
+    },
+    "avatar": {
+        type: String,
+        required:false
     }
 })
 
