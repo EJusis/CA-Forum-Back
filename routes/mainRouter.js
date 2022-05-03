@@ -1,15 +1,20 @@
 const express = require('express')
 const router = express.Router()
-const {validateRegistration, validateLogin, validateNewProduct,validateFilter} = require("../middle/validator")
-const {addNewUser, loginUser, toLocalStorage, addNewProduct, getAllProducts, filterProduct, addBookedDays, getSingleProduct} = require("../controller/mainController")
+const {validateRegistration, validateLogin} = require("../middle/validator")
+const {addNewUser, loginUser, toLocalStorage, addAvatar, createTopic, getAllTopics, getSingleTopic, addComment, getMyTopics} = require("../controller/mainController")
 
 router.post('/adduser', validateRegistration, addNewUser)
 router.post('/loginuser', validateLogin, loginUser)
 router.get('/localStorage/:email', toLocalStorage)
-router.post('/addproduct', validateNewProduct, addNewProduct)
-router.get('/getallproducts', getAllProducts)
-router.post('/filterproduct', validateFilter, filterProduct)
-router.post('/bookdays', addBookedDays)
-router.get('/getsingleproduct/:id', getSingleProduct)
+
+
+
+// new Routes
+router.post('/addAvatar', addAvatar)
+router.post('/addTopic', createTopic)
+router.get('/getAllTopics', getAllTopics)
+router.get('/getSingleTopic/:id', getSingleTopic)
+router.post('/addComment', addComment)
+router.get('/getMyTopics/:email', getMyTopics)
 
 module.exports = router

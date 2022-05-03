@@ -1,6 +1,5 @@
 const validator = require("email-validator");
 const userSchema = require('../models/User')
-const productSchema = require('../models/Product')
 
 
 module.exports = {
@@ -27,22 +26,5 @@ module.exports = {
         }
         next()
     },
-    validateNewProduct: (req, res, next) => {
-        const {photo, city, price, description} = req.body
-        if (!photo.includes('http')) return res.send({success: false, reason: '"Http" in Photo URL missing'})
-        if (city.length < 1) return res.send({success: false, reason: 'City field left blank'})
-        if (price < 1) return res.send({success: false, reason: 'Price field left blank'})
-        if (description.length < 1) return res.send({success: false, reason: 'Description field left blank'})
-        if (description.length < 10) return res.send({success: false, reason: 'Description too short! (min. 10 chars)'})
-
-        next()
-
-    },
-    validateFilter: async (req, res, next) => {
-        const isInDB = await productSchema.find({city: req.body.filterCity.toLowerCase()})
-        if (isInDB.length === 0) return res.send({success: false, reason: 'City field empty'})
-        next()
-
-    }
 
 }
